@@ -1,0 +1,28 @@
+export const Constants = {
+  Cities:
+    [
+      'Lutsk',
+      'Kropyvnytskyi',
+      'Dnipro',
+      'Kyiv',
+      'Kherson',
+      'Chernivtsi',
+      'Chernihiv',
+      'Odesa',
+      'Mykolaiv',
+      'Kharkiv',
+      'Khmelnytskyi',
+      'Donetsk',
+      'Uzhgorod',
+      'Zaporozhye',
+      'Rivne',
+      'Zhytomyr',
+      'Ternopil',
+      'Poltava',
+      'Lviv',
+      'Ivano-Frankivsk',
+      'Cherkasy',
+      'Sumy',
+      'Vinnytsia',
+    ]
+};
