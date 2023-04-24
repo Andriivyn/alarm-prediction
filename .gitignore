@@ -79,4 +79,4 @@ apps/charts/public/charts/.vscode
 .idea
 apps/charts/public/charts/.editorconfig
 apps/charts/public/charts/.gitignore
-apps/charts/.angular
+.angular
