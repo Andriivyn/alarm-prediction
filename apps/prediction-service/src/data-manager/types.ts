@@ -1,1 +1,0 @@
-export type IswReport = { date: string, content: string };
