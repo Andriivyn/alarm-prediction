@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {NavigationEnd, Router, RouterLink} from "@angular/router";
 import {filter, map} from "rxjs";
 
 @Component({
     selector: 'app-menu',
     standalone: true,
-    imports: [CommonModule, RouterLink],
+    imports: [CommonModule, RouterLink, NgOptimizedImage],
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.scss']
 })

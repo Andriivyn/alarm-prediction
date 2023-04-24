@@ -17,18 +17,18 @@ export class DataService {
 
     constructor(private http: HttpClient) {
         this.getPrediction()
-        http.get("assets/merged.json", {responseType: "json"})
-            .subscribe({
-                next: (response) => {
-                    this.mergedData$.next(Object.assign([], response));
-                }
-            });
-        http.get("assets/isw.json", {responseType: "json"})
-            .subscribe({
-                next: (response) => {
-                    this.iswData$.next(Object.assign([], response));
-                }
-            });
+        // http.get("assets/merged.json", {responseType: "json"})
+        //     .subscribe({
+        //         next: (response) => {
+        //             this.mergedData$.next(Object.assign([], response));
+        //         }
+        //     });
+        // http.get("assets/isw.json", {responseType: "json"})
+        //     .subscribe({
+        //         next: (response) => {
+        //             this.iswData$.next(Object.assign([], response));
+        //         }
+        //     });
     }
 
     public getPrediction(payload?) {
