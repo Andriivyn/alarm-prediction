@@ -1,6 +1,7 @@
 {
   "name": "charts",
   "version": "0.0.0",
+  "homepage": "https://github.com/Andriivyn/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
