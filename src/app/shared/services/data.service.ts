@@ -35,16 +35,7 @@ export class DataService {
         // this.postData({regionName: 'all'}).then(response => {
         //     console.log(response);
         // }).catch(error => {console.error(error)})
-        // fetch('http://<public-ip>/api', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': 'Bearer <token>',
-        //         // Replace https with http in the 'Origin' header
-        //         'Origin': window.location.origin.replace(/^https:/, 'http:')
-        //     },
-        //     body: {}
-        // }
+
     }
 
     public getPrediction(payload?) {
@@ -75,7 +66,7 @@ export class DataService {
         const headers = {'content-type': 'application/json',
             'origin': window.location.origin.replace(/^https:/, 'http:'),
             'referer': window.location.origin.replace(/^https:/, 'http:')}
-        return this.http.post(url, params, {headers: headers})
+        return this.http.post(url, params, {headers: headers, withCredentials: true})
             .pipe(
                 // timeout(1500),
                 retry(2),
@@ -97,5 +88,20 @@ export class DataService {
             .catch(error => {
                 throw new Error(error.message);
             });
+    }
+    async request(payload) {
+        const ss = await fetch('http://ec2-35-156-144-101.eu-central-1.compute.amazonaws.com/predictions', {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json',
+                // Replace https with http in the 'Origin' header
+                'Origin': window.location.origin.replace(/^https:/, 'http:')
+            },
+            // credentials: 'include'
+        })
+        const response = await ss.json();
+        this.predictionData$.next(response);
+        console.log(response)
     }
 }

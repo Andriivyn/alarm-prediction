@@ -27,9 +27,11 @@ export class PredictionPageComponent implements OnDestroy {
     public destroy$: Subject<any>;
 
     constructor(public dataService: DataService, public shackBar: MatSnackBar) {
-        this.dataService.getPrediction({regionName: this.cityControl.value});
+        // this.dataService.getPrediction({regionName: this.cityControl.value});
+        this.dataService.request({regionName: 'all'}).then(() => {});
         this.cityControl.valueChanges.subscribe(() => {
-                this.dataService.getPrediction({regionName: this.cityControl.value});
+            this.dataService.request({regionName: this.cityControl.value}).then(() => {});
+            // this.dataService.getPrediction({regionName: this.cityControl.value});
             });
         this.dataService.predictionData$.subscribe((response) => {
             if (response)
