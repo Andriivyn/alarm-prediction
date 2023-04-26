@@ -16,7 +16,7 @@
                 <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <div>
+        <div class="action-wrapper">
             <span>Last prediction time: {{lastPredictionTime}}</span>
             <button color="primary" mat-raised-button (click)="dataService.updatePredictions()">Update Prediction</button>
         </div>
