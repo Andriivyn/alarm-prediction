@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {CommonModule, KeyValue, NgOptimizedImage} from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
@@ -22,7 +22,7 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 })
 export class PredictionPageComponent implements OnDestroy {
     public cities = Constants.Cities;
-    public prediction: any;
+    public prediction: any[] = [];
     public cityControl = new FormControl('all');
     public destroy$: Subject<any>;
 
@@ -32,7 +32,14 @@ export class PredictionPageComponent implements OnDestroy {
                 this.dataService.getPrediction({regionName: this.cityControl.value});
             });
         this.dataService.predictionData$.subscribe((response) => {
-            this.prediction = response;
+            if (response)
+            {
+                const map = new Map();
+                for (let key in response.regions_forecast) {
+                    map.set(key,Array.from(new Map(Object.entries(response.regions_forecast[key]))));
+                }
+            this.prediction =  Array.from(map);
+            }
         })
         this.dataService.predictionUpdate$.subscribe((response) => {
             if (response) {
@@ -46,5 +53,8 @@ export class PredictionPageComponent implements OnDestroy {
         if (this.destroy$){
         this.destroy$.next(true);
         }
+    }
+    originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+        return 0;
     }
 }

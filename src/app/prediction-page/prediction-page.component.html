@@ -20,12 +20,12 @@
     </div>
 
     <div class="prediction-wrapper" *ngIf="prediction">
-        <div class="prediction-content" *ngFor="let city of prediction.regions_forecast | keyvalue">
-            <label class="label-sm">{{city.key}}</label>
+        <div class="prediction-content" *ngFor="let city of prediction">
+            <label class="label-sm">{{city[0]}}</label>
             <div class="hours-wrapper">
-                <div class="hour-point" *ngFor="let hour of $any(city.value) | keyvalue">
-                    <span class="hour-label">{{hour.key}}</span>
-                    <div class="dot-label" [ngClass]="{'red': !hour.value}"></div>
+                <div class="hour-point" *ngFor="let hour of city[1]">
+                    <span class="hour-label">{{hour[0]}}</span>
+                    <div class="dot-label" [ngClass]="{'red': !hour[1]}"></div>
                 </div>
             </div>
         </div>

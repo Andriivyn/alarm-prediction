@@ -38,7 +38,6 @@ export class DataService {
             .subscribe(
                 {
                     next: (response) => {
-                        console.log(response)
                         this.predictionData$.next(response);
                     }
                 }
@@ -50,6 +49,7 @@ export class DataService {
                 {
                     next: (response) => {
                         if (response) {
+
                         this.predictionUpdate$.next(true);
                         }
                     }
