@@ -4,9 +4,8 @@ import {
   ApexAxisChartSeries,
   ApexChart,
   ApexDataLabels, ApexFill,
-  ApexMarkers,
   ApexPlotOptions,
-  ApexStroke, ApexTheme, ApexTitleSubtitle,
+  ApexTitleSubtitle,
   ApexTooltip,
   ApexXAxis, ApexYAxis, NgApexchartsModule
 } from "ng-apexcharts";

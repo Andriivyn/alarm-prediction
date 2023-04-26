@@ -10,6 +10,4 @@ import {RouterLink} from "@angular/router";
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent {
-
-}
+export class MainPageComponent {}

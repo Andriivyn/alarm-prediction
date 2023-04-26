@@ -8,7 +8,7 @@ const routes: Routes = [
     {path: 'main', component: MainPageComponent, pathMatch: 'full'},
     {path: 'statistic', component: ChartsPageComponent, pathMatch: 'full'},
     {path: 'prediction', component: PredictionPageComponent, pathMatch: 'full'},
-    {path: '**', redirectTo: 'statistic'},
+    {path: '**', redirectTo: 'main'},
 ];
 
 @NgModule({

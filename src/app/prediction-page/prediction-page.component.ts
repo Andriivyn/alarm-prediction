@@ -9,7 +9,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {Constants} from "../../assets/constants";
 import {DataService} from "../shared/services/data.service";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
-import {debounceTime, Subject, takeUntil, tap} from "rxjs";
+import { Subject } from "rxjs";
 import {MenuComponent} from "../shared/components/menu/menu.component";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 
@@ -20,33 +20,35 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     templateUrl: './prediction-page.component.html',
     styleUrls: ['./prediction-page.component.scss']
 })
+
 export class PredictionPageComponent implements OnDestroy {
     public cities = Constants.Cities;
     public prediction: any[] = [];
     public cityControl = new FormControl('all');
     public destroy$: Subject<any>;
+    public lastPredictionTime: string;
 
     constructor(public dataService: DataService, public shackBar: MatSnackBar) {
-        // this.dataService.getPrediction({regionName: this.cityControl.value});
-        this.dataService.request({regionName: 'all'}).then(() => {});
+        this.dataService.getPrediction({regionName: this.cityControl.value}).then(() => {});
         this.cityControl.valueChanges.subscribe(() => {
-            this.dataService.request({regionName: this.cityControl.value}).then(() => {});
-            // this.dataService.getPrediction({regionName: this.cityControl.value});
+            this.dataService.getPrediction({regionName: this.cityControl.value}).then();
             });
         this.dataService.predictionData$.subscribe((response) => {
-            if (response)
+            if (response?.data)
             {
+                this.lastPredictionTime = response.data.last_prediction_time
+                console.log(this.lastPredictionTime)
                 const map = new Map();
-                for (let key in response.regions_forecast) {
-                    map.set(key,Array.from(new Map(Object.entries(response.regions_forecast[key]))));
+                for (let key in response.data.regions_forecast) {
+                    map.set(key,Array.from(new Map(Object.entries(response.data.regions_forecast[key]))));
                 }
             this.prediction =  Array.from(map);
             }
         })
         this.dataService.predictionUpdate$.subscribe((response) => {
             if (response) {
-                this.dataService.getPrediction({regionName: this.cityControl.value});
-                this.shackBar.open('Prediction was updated successfully!', '', {duration: 30000000, panelClass: ['success']})
+                this.dataService.getPrediction({regionName: this.cityControl.value}).then(() => {});
+                this.shackBar.open('Prediction was updated successfully!', '', {duration: 3000, verticalPosition: "top", panelClass: ['success']})
             }
         })
     }
@@ -55,8 +57,5 @@ export class PredictionPageComponent implements OnDestroy {
         if (this.destroy$){
         this.destroy$.next(true);
         }
-    }
-    originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
-        return 0;
     }
 }
