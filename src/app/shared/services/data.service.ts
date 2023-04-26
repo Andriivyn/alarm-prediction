@@ -73,7 +73,8 @@ export class DataService {
 
     public post(url, params) {
         const headers = {'content-type': 'application/json',
-            'Origin': window.location.origin.replace(/^https:/, 'http:')}
+            'origin': window.location.origin.replace(/^https:/, 'http:'),
+            'referer': window.location.origin.replace(/^https:/, 'http:')}
         return this.http.post(url, params, {headers: headers})
             .pipe(
                 // timeout(1500),
