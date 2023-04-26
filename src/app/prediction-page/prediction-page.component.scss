@@ -1,5 +1,5 @@
 :host {
-  display: flex;
+  //display: flex;
   height: 100%;
   overflow: hidden;
 }
@@ -9,11 +9,18 @@
     display: flex;
     justify-content: space-between;
 
-    &__actions {
-      display: flex;
-      gap: 10px;
-    }
   }
+    &__title {
+      font-size: 24px;
+    }
+
+    &__icon {
+      cursor: pointer;
+      height: 45px;
+      width: 45px;
+      border-radius: 5px;
+    }
+
 }
 
 .icon {
@@ -23,15 +30,17 @@
 }
 
 .main-container {
+  height: 100%;
   padding: 20px 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 
   .fields-wrapper {
+    width: 100%;
     display: flex;
     gap: 20px;
-
+    justify-content: space-between;
   }
 }
 
@@ -39,6 +48,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   gap: 20px;
 
   .prediction-content {

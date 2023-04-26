@@ -60,4 +60,18 @@ html, body {
   line-height: 20px;
   font-weight: 600;
 }
+.mat-snack-bar-container.success {
+  background-color: green !important;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  min-width: 260px !important;
+}
 
+.mat-mdc-snack-bar-container {
+  &.success {
+    --mdc-snackbar-container-color: #328d1a;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+}
