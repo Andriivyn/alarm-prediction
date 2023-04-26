@@ -36,13 +36,13 @@ export class PredictionPageComponent implements OnDestroy {
         this.dataService.predictionData$.subscribe((response) => {
             if (response?.data)
             {
-                this.lastPredictionTime = response.data.last_prediction_time
+                this.lastPredictionTime = new Date(response.data.last_prediction_time).toLocaleString()
                 console.log(this.lastPredictionTime)
                 const map = new Map();
                 for (let key in response.data.regions_forecast) {
-                    map.set(key,Array.from(new Map(Object.entries(response.data.regions_forecast[key]))));
+                    map.set(key, Array.from(new Map(Object.entries(response.data.regions_forecast[key]))));
                 }
-            this.prediction =  Array.from(map);
+            this.prediction = Array.from(map);
             }
         })
         this.dataService.predictionUpdate$.subscribe((response) => {
